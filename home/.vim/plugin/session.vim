@@ -55,5 +55,8 @@ augroup sessionize
   }
 augroup END
 
+command! SaveSession    SaveSession()
+command! Sav            SaveSession()
+
 command! DeleteSession  DeleteSession()
 command! Del            DeleteSession()

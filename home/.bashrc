@@ -14,8 +14,8 @@ fi
 ###############################################################################
 ################################### Basics ####################################
 ###############################################################################
-pnpm_home="/home/ahnaf/.local/share/pnpm"
-PATH="$PATH:$pnpm_home"
+PNPM_HOME="/home/ahnaf/.local/share/pnpm"
+PATH="$PATH:$PNPM_HOME"
 
 EDITOR="$(which vim)"
 
@@ -40,9 +40,9 @@ sunrise_time=$((6 + 1))
 sunset_time=$((19 - 1))
 
 # Use light background during day light.
-if [ "$hour" -ge "$sunrise_time" ] && [ "$hour" -lt "$sunset_time" ]; then
-  TERM_BACKGROUND="light"
-fi
+# if [ "$hour" -ge "$sunrise_time" ] && [ "$hour" -lt "$sunset_time" ]; then
+#   TERM_BACKGROUND="light"
+# fi
 
 # Set color schemes for terminal apps.
 color_scheme="gruvbox"
@@ -56,7 +56,13 @@ ln -sf "$theme_src" "$theme_dest"
 HISTSIZE=-1
 HISTFILESIZE=-1
 HISTCONTROL="erasedups:ignoreboth"
+HISTIGNORE="clear:exit:cd:pwd:ls:la:ll"
 shopt -s histappend
+
+###############################################################################
+################################ Key bindings #################################
+###############################################################################
+source /usr/share/fzf/key-bindings.bash
 
 ###############################################################################
 ################################### Prompt ####################################
@@ -72,6 +78,9 @@ PS1="$current_directory $prompt_indicator "
 ###############################################################################
 ################################### Aliases ###################################
 ###############################################################################
+# Unset all of the previous aliases.
+unalias -a
+
 # Directory listing:
 alias ls="ls -AF --color=auto"
 alias ll="tree -alC --dirsfirst --gitignore -I .git"
@@ -100,7 +109,6 @@ alias rm="rm -fv"
 ###############################################################################
 ################################## Clear ups ##################################
 ###############################################################################
-unset pnpm_home
 unset hour
 unset color_scheme
 unset theme_src
@@ -121,13 +129,14 @@ export CXX
 export EDITOR
 export FZF_DEFAULT_OPTS
 export GTK_MODULE
+export HISTCONTROL
+export HISTFILESIZE
+export HISTSIZE
 export PATH
+export PNPM_HOME
 export PS1
 export QT_IM_MODULE
 export SUDO_PROMPT
 export TERM_BACKGROUND
-export XMODIFIERS
-export HISTSIZE
-export HISTFILESIZE
-export HISTCONTROL
 export WALLPAPERS
+export XMODIFIERS

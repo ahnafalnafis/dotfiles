@@ -1,6 +1,6 @@
 # Terminal emulator:
 super + Return
-	kitty
+	alacritty
 
 # Program launcher:
 alt + p

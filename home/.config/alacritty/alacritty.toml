@@ -1,0 +1,27 @@
+[window]
+padding.x = 3
+padding.y = 2
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 10
+offset.x = 0
+offset.y = 1
+
+[font.normal]
+family = "Rec Mono SemiCasual"
+style = "Regular"
+
+[font.bold]
+family = "Rec Mono SemiCasual"
+style = "Bold"
+
+[font.italic]
+family = "Rec Mono SemiCasual"
+style = "Italic"
+
+[font.bold_italic]
+family = "Rec Mono SemiCasual"
+style = "Bold Italic"

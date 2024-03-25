@@ -156,6 +156,10 @@ nnoremap <A-j> <Cmd>move . +1<CR>
 vnoremap <A-k> :move '< -2<CR>gv
 vnoremap <A-j> :move '> +1<CR>gv
 
+# Buffer navigation:
+nnoremap <Tab>    <Cmd>bnext<CR>
+nnoremap <S-Tab>  <Cmd>bprevious<CR>
+
 # Tab navigation:
 nnoremap <PageUp>    <Cmd>tabnext<CR>
 nnoremap <PageDown>  <Cmd>tabprevious<CR>
@@ -289,6 +293,7 @@ g:coc_snippet_prev = "<C-k>"
 g:coc_global_extensions =<< trim END
   coc-snippets
   coc-prettier
+  coc-eslint
   coc-cmake
   coc-clangd
   coc-tsserver
@@ -298,6 +303,7 @@ g:coc_global_extensions =<< trim END
   coc-markdownlint
   coc-json
   coc-yaml
+  coc-toml
 END
 
 command! -nargs=0 OR  

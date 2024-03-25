@@ -3,6 +3,7 @@
   "signature.enable": false,
   "coc.preferences.formatOnSave": true,
   "colors.enable": true,
+  "inlayHint.enable": false,
   "diagnostic.errorSign": "",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
@@ -39,5 +40,13 @@
     "default": "DEFAULT"
   },
   "suggest.formatItems": ["abbr", "kind", "menu"],
-  "cSpell.userWords": ["BSPWM", "Polybar"]
+  "cSpell.userWords": [
+    "Appbar",
+    "BSPWM",
+    "Polybar",
+    "Pressable",
+    "pnpm",
+    "supabase",
+    "vitest"
+  ]
 }
