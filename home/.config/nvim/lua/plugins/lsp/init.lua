@@ -29,6 +29,7 @@ return {
         },
 
         -- Lsp utils NeoVim
+        -- TODO: Add Lspsaga.nvim
         { "folke/neodev.nvim", opts = {} },
 
         -- Formatter

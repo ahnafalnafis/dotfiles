@@ -62,6 +62,7 @@ local cmp_options = {
   }),
 }
 
+vim.opt.pumheight = 15
 cmp.setup(cmp_options)
 
 cmp.setup.cmdline({ "/", "?" }, {

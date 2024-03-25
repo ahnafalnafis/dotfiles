@@ -1,4 +1,4 @@
-local merge = require("utils.merge").merge
+local utils = require("utils")
 
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lspconfig = require("lspconfig")
@@ -8,7 +8,7 @@ local completion_capabilities = cmp_nvim_lsp.default_capabilities() or {}
 
 local language_servers = {}
 local lsp_options = {
-  capabilities = merge(capabilities, completion_capabilities),
+  capabilities = utils.merge(capabilities, completion_capabilities),
 }
 
 language_servers.clangd = {}
@@ -43,7 +43,8 @@ require("mason").setup()
 require("mason-lspconfig").setup({
   handlers = {
     function(server)
-      local server_options = merge(language_servers[server] or {}, lsp_options)
+      local server_options =
+        utils.merge(language_servers[server] or {}, lsp_options)
       lspconfig[server].setup(server_options)
     end,
   },
