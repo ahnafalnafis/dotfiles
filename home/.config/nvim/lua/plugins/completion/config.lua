@@ -1,5 +1,5 @@
 local cmp = require("cmp")
-local helpers = require("plugins.lsp.helpers")
+local helpers = require("plugins.completion.helpers")
 
 local cmp_kinds = {
   Text = " ",
@@ -50,31 +50,18 @@ local cmp_options = {
     ["<C-e>"] = cmp.mapping.abort(),
 
     ["<C-Space>"] = cmp.mapping.complete(),
+    ["<CR>"] = cmp.mapping.confirm(),
     ["<Tab>"] = cmp.mapping(helpers.on_tab, { "i", "s" }),
     ["<S-Tab>"] = cmp.mapping(helpers.on_shift_tab, { "i", "s" }),
-    ["<CR>"] = cmp.mapping.confirm(),
   }),
 
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "vsnip" },
     { name = "buffer" },
+    { name = "path" },
   }),
 }
 
 vim.opt.pumheight = 15
 cmp.setup(cmp_options)
-
-cmp.setup.cmdline({ "/", "?" }, {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = { { name = "buffer" } },
-})
-
-cmp.setup.cmdline(":", {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = "path" },
-    { name = "cmdline" },
-  }),
-  matching = { disallow_symbol_nonprefix_matching = false },
-})

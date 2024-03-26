@@ -4,11 +4,15 @@ local session_dir = vim.env.HOME .. "/.cache/vim/session"
 local session_file_name = vim.env.PWD:gsub("/", "__") .. ".vim"
 local session_file = string.format("%s/%s", session_dir, session_file_name)
 
-if not vim.fn.isdirectory(session_dir) then
+local session_dir_exists = vim.fn.isdirectory(session_dir) == 1
+local session_file_exists = vim.fn.filereadable(session_file) == 1
+
+if not session_dir_exists then
   vim.fn.mkdir(session_dir)
   require("notify")("Ceated session directory at " .. session_dir)
 end
 
+-- Save session.
 local function save_session()
   local choice = vim.fn.confirm("Save this session?", "&Yes\n&No")
 
@@ -16,21 +20,25 @@ local function save_session()
     return
   end
 
-  vim.cmd.mksession(session_file)
+  vim.cmd.mksession(session_file, { bang = true })
 end
 
+-- Restore session.
 local function restore_session()
-  if vim.fn.filereadable(session_file) then
+  if session_file_exists then
     vim.cmd.source(session_file)
   end
 end
 
+-- Delete session.
 local function delete_session()
   vim.cmd("!rm " .. session_file)
 end
 
+-- Do not store current options.
 vim.opt.sessionoptions:remove("options")
 
+-- Setting up auto commands.
 local sesseionize = vim.api.nvim_create_augroup("sesseionize", { clear = true })
 
 vim.api.nvim_create_autocmd("VimEnter", {
@@ -46,6 +54,7 @@ vim.api.nvim_create_autocmd("VimLeave", {
   callback = save_session,
 })
 
+-- Convenient commands.
 command("Del", delete_session, {})
 command("DeleteSession", delete_session, {})
 

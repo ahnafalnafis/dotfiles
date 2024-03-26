@@ -1,3 +1,14 @@
+local highlight_yank =
+  vim.api.nvim_create_augroup("highlight_yank", { clear = true })
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight yanked text",
+  group = highlight_yank,
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
 local tree_sitter_options = {
   ensure_installed = {
     "asm",
