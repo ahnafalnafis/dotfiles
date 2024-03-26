@@ -31,6 +31,7 @@ local tree_sitter_options = {
   },
 }
 
+---@type LazySpec
 return {
   -- Syntax highlighting
   { "nvim-treesitter/nvim-treesitter", opts = tree_sitter_options },
@@ -41,13 +42,23 @@ return {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
 
-    opts = {
-      bold = false,
-      italic = { strings = false },
-    },
+    config = function()
+      local gruvbox = require("gruvbox")
 
-    config = function(_, opts)
-      require("gruvbox").setup(opts)
+      ---@type GruvboxConfig
+      local opts = {
+        bold = false,
+        italic = { strings = false },
+        overrides = {
+          SignColumn = { bg = gruvbox.palette.dark0 },
+          DiagnosticSignError = { link = "GruvboxRed" },
+          DiagnosticSignWarn = { link = "GruvboxYellow" },
+          DiagnosticSignInfo = { link = "GruvboxBlue" },
+          DiagnosticSignHint = { link = "GruvboxAqua" },
+        },
+      }
+
+      gruvbox.setup(opts)
       vim.cmd.colorscheme("gruvbox")
     end,
   },

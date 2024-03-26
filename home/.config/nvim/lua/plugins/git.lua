@@ -1,15 +1,22 @@
+---@type LazySpec
 return {
   "tpope/vim-fugitive",
   {
-    "airblade/vim-gitgutter",
+    "lewis6991/gitsigns.nvim",
 
-    init = function()
+    config = function()
       local bar_sign = "▌"
 
-      vim.g.gitgutter_sign_added = bar_sign
-      vim.g.gitgutter_sign_removed = bar_sign
-      vim.g.gitgutter_sign_modified = bar_sign
-      vim.g.gitgutter_sign_modified_removed = bar_sign
-    end
-  }
+      require("gitsigns").setup({
+        signs = {
+          add = { text = bar_sign },
+          change = { text = bar_sign },
+          delete = { text = bar_sign },
+          changedelete = { text = bar_sign },
+          topdelete = { text = "‾" },
+          untracked = { text = "┆" },
+        },
+      })
+    end,
+  },
 }
