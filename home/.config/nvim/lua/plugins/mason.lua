@@ -1,10 +1,11 @@
 local utils = require("utils")
 
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
+-- local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lspconfig = require("lspconfig")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-local completion_capabilities = cmp_nvim_lsp.default_capabilities() or {}
+-- local completion_capabilities = cmp_nvim_lsp.default_capabilities() or {}
+local completion_capabilities = {}
 
 local language_servers = {}
 local lsp_options = {
@@ -19,7 +20,21 @@ language_servers.svelte = {}
 language_servers.lua_ls = {}
 language_servers.bashls = {}
 language_servers.yamlls = {}
-language_servers.jsonls = {}
+
+language_servers.jsonls = {
+  json = {
+    schemas = {
+      {
+        fileMatch = { "package.json" },
+        url = "https://json.schemastore.org/package.json",
+      },
+      {
+        fileMatch = { "tsconfig*.json" },
+        url = "https://json.schemastore.org/tsconfig.json",
+      },
+    },
+  },
+}
 
 return {
 
@@ -28,7 +43,7 @@ return {
     handlers = {
       function(server)
         local server_options =
-          utils.merge(language_servers[server] or {}, lsp_options)
+          utils.merge(lsp_options, language_servers[server] or {})
 
         lspconfig[server].setup(server_options)
       end,
