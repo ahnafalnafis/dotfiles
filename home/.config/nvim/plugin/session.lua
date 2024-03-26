@@ -20,7 +20,7 @@ local function save_session()
     return
   end
 
-  vim.cmd.mksession(session_file, { bang = true })
+  vim.cmd.mksession({ args = { session_file }, bang = true })
 end
 
 -- Restore session.
