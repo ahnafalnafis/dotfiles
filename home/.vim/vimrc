@@ -2,15 +2,16 @@ vim9script
 
 import autoload "utils.vim"
 
-g:dev = ($DEV == "1")
+g:development = ($VIM_DEV_MODE == "1")
 
 ###############################################################################
 ################################### PLUGINS ###################################
 ###############################################################################
 
-if g:dev
+if g:development
   plug#begin("~/.cache/vim/plugged")
     Plug "morhetz/gruvbox"
+    Plug "sheerun/vim-polyglot"
     Plug "machakann/vim-highlightedyank"
     Plug "markonm/traces.vim"
     Plug "ap/vim-css-color", #{ for: [
@@ -20,8 +21,8 @@ if g:dev
           \ ]}
 
     Plug "neoclide/coc.nvim", #{ branch: "release" }
-    Plug "wellle/context.vim"
-    Plug "tpope/vim-fugitive"
+    # Plug "wellle/context.vim"
+    Plug "tpope/vim-fugitive", #{ on: "Git" }
     Plug "airblade/vim-gitgutter"
     Plug "cohama/lexima.vim"
     Plug "tpope/vim-surround"
@@ -84,7 +85,7 @@ set incsearch
 set hlsearch
 
 # History:
-set history=10000
+set history=500
 set viminfo=!,'20,<50,s10,h
 
 # Use system clipboard:
@@ -110,14 +111,16 @@ set shortmess=cfilnsxIT
 set belloff=all
 
 # Text decorations:
-set textwidth=79
-set nowrap
+set textwidth=80
+set linebreak
+set breakindent
+# set nowrap
 
 set display+=lastline
 &fillchars = "vert:│,fold:˗,eob: "
 
 set hidden
-set updatetime=50
+set updatetime=500
 set nrformats=alpha,hex,bin
 set signcolumn=yes
 
@@ -208,7 +211,7 @@ nnoremap Q @q
 &background = $TERM_BACKGROUND   # This is set in ~/.bashrc
 
 # Color scheme:
-if g:dev
+if g:development
   g:gruvbox_bold = false
   g:gruvbox_italic = true
   g:gruvbox_contrast_dark = "hard"
@@ -316,21 +319,21 @@ inoremap <expr> <C-@>     coc#refresh()
 
 nmap <silent> gd   <Plug>(coc-definition)
 nmap <silent> gy   <Plug>(coc-type-definition)
-nmap <silent> gi   <Plug>(coc-implementation)
+nmap <silent> gI   <Plug>(coc-implementation)
 nmap <silent> gr   <Plug>(coc-references)
-nmap <silent> gn   <Plug>(coc-rename)
 
-xmap <Leader>a   <Plug>(coc-codeaction-selected)
-nmap <Leader>a   <Plug>(coc-codeaction-selected)
-nmap <Leader>ac  <Plug>(coc-codeaction-cursor)
-nmap <Leader>as  <Plug>(coc-codeaction-source)
+nmap <silent> <Leader>r   <Plug>(coc-rename)
+# xmap <Leader>a   <Plug>(coc-codeaction-selected)
+# nmap <Leader>a   <Plug>(coc-codeaction-selected)
+nmap <silent> <Leader>ca  <Plug>(coc-codeaction-cursor)
+nmap <silent> <Leader>cs  <Plug>(coc-codeaction-source)
 
-nmap <Leader>cf  <Plug>(coc-fix-current)
-nmap <Leader>cl  <Plug>(coc-codelens-action)
+nmap <silent> <Leader>cf  <Plug>(coc-fix-current)
+nmap <silent> <Leader>cl  <Plug>(coc-codelens-action)
 
 nmap <silent> <Leader>re <Plug>(coc-codeaction-refactor)
-xmap <silent> <Leader>r  <Plug>(coc-codeaction-refactor-selected)
-nmap <silent> <Leader>r  <Plug>(coc-codeaction-refactor-selected)
+# xmap <silent> <Leader>r  <Plug>(coc-codeaction-refactor-selected)
+# nmap <silent> <Leader>r  <Plug>(coc-codeaction-refactor-selected)
 
 nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"

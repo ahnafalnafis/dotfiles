@@ -99,7 +99,7 @@ alias gb="git branch"
 alias gco="git checkout"
 
 # Vim:
-alias vim='DEV=1 $EDITOR'
+alias vim='VIM_DEV_MODE=1 $EDITOR'
 
 # Misc:
 alias sb="source ~/.bashrc"

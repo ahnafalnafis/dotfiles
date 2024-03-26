@@ -1,6 +1,6 @@
 vim9script noclear
 
-if !g:dev
+if !g:development
   finish
 endif
 
