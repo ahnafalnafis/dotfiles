@@ -1,6 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
-  lazy = true,
+  import = "plugins.lsp.mason",
 
   config = function()
     vim.diagnostic.config({

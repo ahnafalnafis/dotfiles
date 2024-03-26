@@ -11,8 +11,10 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       cpp = { "clang-format" },
-      typescript = { "prettier" },
-      typescriptreact = { "prettier" },
+      typescript = { "prettierd" },
+      typescriptreact = { "prettierd" },
+      json = { "prettierd" },
+      jsonc = { "prettierd" },
     },
   },
 }

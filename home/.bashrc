@@ -101,6 +101,9 @@ alias gco="git checkout"
 # Vim:
 alias vim='VIM_DEV_MODE=1 $EDITOR'
 
+# Pnpm:
+alias pn="$(which pnpm)"
+
 # Misc:
 alias sb="source ~/.bashrc"
 alias mkdir="mkdir -pv"
