@@ -1,9 +1,9 @@
-local highlight_yank =
-  vim.api.nvim_create_augroup("highlight_yank", { clear = true })
-
 vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("highlight_yank", {
+    clear = true,
+  }),
   desc = "Highlight yanked text",
-  group = highlight_yank,
+
   callback = function()
     vim.highlight.on_yank()
   end,
@@ -48,6 +48,7 @@ return {
       ---@type GruvboxConfig
       local opts = {
         bold = false,
+        ---@diagnostic disable-next-line: missing-fields
         italic = { strings = false },
         overrides = {
           SignColumn = { bg = gruvbox.palette.dark0 },

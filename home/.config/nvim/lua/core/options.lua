@@ -37,6 +37,7 @@ opt.updatetime = 500
 opt.nrformats = "alpha"
 opt.signcolumn = "yes"
 opt.formatoptions:remove("o")
+opt.fillchars:append(",eob: ")
 
 -- stylua: ignore start
 -- Indentation stuff

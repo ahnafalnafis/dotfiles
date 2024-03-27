@@ -14,3 +14,6 @@
 
 [init]
   defaultBranch = master
+[diff "lockb"]
+	textconv = bun
+	binary = true

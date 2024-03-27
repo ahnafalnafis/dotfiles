@@ -18,9 +18,15 @@ vim.opt.rtp:prepend(lazy_path)
 -- Plugins:
 require("lazy").setup({
   spec = { import = "plugins" },
+
   install = {
     colorschme = { "gruvbox", "habamax" },
   },
+
+  change_detection = {
+    notify = false,
+  },
+
   performance = {
     rtp = {
       disabled_plugins = {
