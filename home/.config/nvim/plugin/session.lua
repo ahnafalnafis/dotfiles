@@ -1,15 +1,15 @@
 local command = vim.api.nvim_create_user_command
 
-local session_dir = vim.env.HOME .. "/.cache/vim/session"
-local session_file_name = vim.env.PWD:gsub("/", "__") .. ".vim"
-local session_file = string.format("%s/%s", session_dir, session_file_name)
+local session_path = vim.fn.stdpath("state") .. "/session"
+local session_file_name = vim.fn.getcwd():gsub("/", "__") .. ".vim"
+local session_file = string.format("%s/%s", session_path, session_file_name)
 
-local session_dir_exists = vim.fn.isdirectory(session_dir) == 1
+local session_dir_exists = vim.fn.isdirectory(session_path) == 1
 local session_file_exists = vim.fn.filereadable(session_file) == 1
 
 if not session_dir_exists then
-  vim.fn.mkdir(session_dir)
-  require("notify")("Ceated session directory at " .. session_dir)
+  vim.fn.mkdir(session_path)
+  require("notify")("Ceated session directory at " .. session_path)
 end
 
 -- Save session.
@@ -55,8 +55,5 @@ vim.api.nvim_create_autocmd("VimLeave", {
 })
 
 -- Convenient commands.
-command("Del", delete_session, {})
-command("DeleteSession", delete_session, {})
-
-command("Save", save_session, {})
 command("SaveSession", save_session, {})
+command("DeleteSession", delete_session, {})

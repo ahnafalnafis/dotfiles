@@ -40,6 +40,7 @@ autocmd("LspAttach", {
 
     -- Diagnostics:
     lsp_map("gD", vim.diagnostic.open_float, "Code diagnostics")
+    lsp_map("gwd", telescope.diagnostics, "Code diagnostics")
     lsp_map("d]", vim.diagnostic.goto_next, "Go to next diagnostic report")
     lsp_map("d[", vim.diagnostic.goto_prev, "Go to previous diagnostic report")
   end,

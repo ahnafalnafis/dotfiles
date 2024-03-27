@@ -1,6 +1,9 @@
+local utils = require("utils")
+
 local branch_name = vim.fn.FugitiveHead()
 local file_name = "%t"
 local modification_status = "%m"
+local file_type = "%y "
 local cusror_position = "%l:%v"
 
 local components = {
@@ -8,6 +11,7 @@ local components = {
   file_name,
   modification_status,
   "%=",
+  file_type,
   cusror_position,
 }
 

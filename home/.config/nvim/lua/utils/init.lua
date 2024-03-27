@@ -26,4 +26,24 @@ function this.merge(...)
   return vim.tbl_deep_extend("force", ...)
 end
 
+this.file_types = {
+  asm = "Assembly",
+  css = "CSS",
+  html = "HTML",
+  javascript = "JavaScript",
+  javascriptreact = "JavaScript",
+  json = "JSON",
+  jsonc = "JSON with Comments",
+  lua = "Lua",
+  php = "PHP",
+  scss = "S(CSS)",
+  typescript = "TypeScript",
+  typescriptreact = "TypeScript",
+  vim = "Vim script",
+}
+
+function this.get_file_type(file_type)
+  return this.file_types[file_type] or file_type
+end
+
 return this
