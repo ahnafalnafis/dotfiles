@@ -11,7 +11,6 @@ g:development = ($VIM_DEV_MODE == "1")
 if g:development
   plug#begin("~/.cache/vim/plugged")
     Plug "morhetz/gruvbox"
-    Plug "sheerun/vim-polyglot"
     Plug "machakann/vim-highlightedyank"
     Plug "markonm/traces.vim"
     Plug "ap/vim-css-color", #{ for: [
@@ -296,7 +295,6 @@ g:coc_snippet_prev = "<C-k>"
 g:coc_global_extensions =<< trim END
   coc-snippets
   coc-prettier
-  coc-eslint
   coc-cmake
   coc-clangd
   coc-tsserver
@@ -317,21 +315,19 @@ inoremap <expr> <S-Tab>   utils.OnShiftTab()
 inoremap <expr> <Enter>   utils.OnEnter()
 inoremap <expr> <C-@>     coc#refresh()
 
-nmap <silent> gd   <Plug>(coc-definition)
-nmap <silent> gy   <Plug>(coc-type-definition)
-nmap <silent> gI   <Plug>(coc-implementation)
-nmap <silent> gr   <Plug>(coc-references)
+nmap <buffer><silent> g]   <Plug>(coc-definition)
+nmap <buffer><silent> gtd  <Plug>(coc-type-definition)
+nmap <buffer><silent> gI   <Plug>(coc-implementation)
+nmap <buffer><silent> gr   <Plug>(coc-references)
+nmap <buffer><silent> gn   <Plug>(coc-rename)
+nmap <buffer><silent> gca  <Plug>(coc-codeaction-cursor)
+nmap <buffer><silent> gcs  <Plug>(coc-codeaction-source)
+nmap <buffer><silent> gcf  <Plug>(coc-fix-current)
+nmap <buffer><silent> gcl  <Plug>(coc-codelens-action)
+nmap <buffer><silent> gcr  <Plug>(coc-codeaction-refactor)
 
-nmap <silent> <Leader>r   <Plug>(coc-rename)
 # xmap <Leader>a   <Plug>(coc-codeaction-selected)
 # nmap <Leader>a   <Plug>(coc-codeaction-selected)
-nmap <silent> <Leader>ca  <Plug>(coc-codeaction-cursor)
-nmap <silent> <Leader>cs  <Plug>(coc-codeaction-source)
-
-nmap <silent> <Leader>cf  <Plug>(coc-fix-current)
-nmap <silent> <Leader>cl  <Plug>(coc-codelens-action)
-
-nmap <silent> <Leader>re <Plug>(coc-codeaction-refactor)
 # xmap <silent> <Leader>r  <Plug>(coc-codeaction-refactor-selected)
 # nmap <silent> <Leader>r  <Plug>(coc-codeaction-refactor-selected)
 
