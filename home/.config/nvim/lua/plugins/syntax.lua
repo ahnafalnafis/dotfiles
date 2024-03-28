@@ -41,6 +41,7 @@ return {
   {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
+    enabled = false,
 
     config = function()
       local gruvbox = require("gruvbox")
@@ -59,8 +60,23 @@ return {
         },
       }
 
-      gruvbox.setup(opts)
-      vim.cmd.colorscheme("gruvbox")
+      -- gruvbox.setup(opts)
+      -- vim.cmd.colorscheme("gruvbox")
+    end,
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require("tokyonight").setup({
+        style = "night",
+        keyword = { italic = false },
+      })
+
+      vim.cmd.colorscheme("tokyonight")
     end,
   },
 }

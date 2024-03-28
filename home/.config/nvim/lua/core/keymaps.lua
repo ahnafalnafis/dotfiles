@@ -1,8 +1,4 @@
-local mappers = require("utils.mappers")
-local utils = require("utils")
-
-local nnoremap = mappers.nnoremap
-local vnoremap = mappers.vnoremap
+require("utils.mappers")
 
 -- The legend key ;)
 vim.g.mapleader = ";"
@@ -12,14 +8,18 @@ nnoremap("<A-a>", "msggVG", { desc = "Select all" })
 vnoremap("<", "<gv", { desc = "Restore visual mode after a visual shifting" })
 vnoremap(">", ">gv", { desc = "Restore visual mode after a visual shifting" })
 
-nnoremap("<C-k>", utils.add_line_above, {
+nnoremap("<C-k>", function()
+  vim.fn.append(vim.fn.line(".") - 1, "")
+end, {
   silent = true,
-  desc = "Add one empty line above",
+  desc = "Add an empty line above",
 })
 
-nnoremap("<C-j>", utils.add_line_below, {
+nnoremap("<C-j>", function()
+  vim.fn.append(vim.fn.line("."), "")
+end, {
   silent = true,
-  desc = "Add one empty line below",
+  desc = "Add an empty line below",
 })
 
 nnoremap("<A-k>", "<Cmd>move . -2<CR>", { desc = "Move current line up" })

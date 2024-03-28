@@ -1,15 +1,5 @@
 local this = {}
 
----@return nil
-function this.add_line_above()
-  vim.fn.append(vim.fn.line(".") - 1, "")
-end
-
----@return nil
-function this.add_line_below()
-  vim.fn.append(vim.fn.line("."), "")
-end
-
 -- A `vim.fn.feedkeys()` wrapper.
 ---@param mode string
 ---@param key string

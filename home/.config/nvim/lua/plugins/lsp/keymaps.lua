@@ -3,9 +3,6 @@ local telescope = require("telescope.builtin")
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
-local mappers = require("utils.mappers")
-local nnoremap = mappers.nnoremap
-
 autocmd("LspAttach", {
   group = augroup("lsp_setup", { clear = true }),
 
